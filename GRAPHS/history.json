@@ -1,0 +1,23 @@
+[
+  {
+    "run_id": "20260806-155836_lsd-baseline",
+    "tag": "lsd-baseline",
+    "description": "preprocess + isolate_walls_multiscale(thick=7,thin=2) + detect_walls_lsd, no regularize -- vector-space (shapely) precision/recall/F1",
+    "timestamp": "20260806-155836",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7102147156286943,
+        "median": 0.7327658801030099
+      },
+      "recall": {
+        "mean": 0.9491699997382462,
+        "median": 1.0
+      },
+      "f1": {
+        "mean": 0.8095933454070888,
+        "median": 0.8450123147365507
+      }
+    }
+  }
+]
