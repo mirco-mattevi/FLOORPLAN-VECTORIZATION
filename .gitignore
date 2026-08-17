@@ -18,3 +18,9 @@ SMALL/
 
 # Claude
 CLAUDE.md
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.svg
