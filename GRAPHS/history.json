@@ -19,5 +19,278 @@
         "median": 0.8450123147365507
       }
     }
+  },
+  {
+    "run_id": "20260817-185410_CVC-FP-evaluation",
+    "tag": "CVC-FP evaluation",
+    "description": "Evaluation of the wall detection pipeline on the CVC-FP dataset, comparing predicted wall segments against ground-truth SVGs.",
+    "timestamp": "20260817-185410",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7102147156286943,
+        "median": 0.7327658801030099
+      },
+      "recall": {
+        "mean": 0.9491699997382462,
+        "median": 1.0
+      },
+      "f1": {
+        "mean": 0.8095933454070888,
+        "median": 0.8450123147365507
+      }
+    }
+  },
+  {
+    "run_id": "20260821-141120_CUBICASA-evaluation",
+    "tag": "CUBICASA evaluation",
+    "description": "Evaluation of the wall detection pipeline on the CUBICASA dataset",
+    "timestamp": "20260821-141120",
+    "n_images": 5000,
+    "aggregate": {
+      "precision": {
+        "mean": 0.2022444510283832,
+        "median": 0.1783791463942274
+      },
+      "recall": {
+        "mean": 0.2835343794987563,
+        "median": 0.26068050364196815
+      },
+      "f1": {
+        "mean": 0.22743827306279282,
+        "median": 0.20931463115291649
+      }
+    }
+  },
+  {
+    "run_id": "20260824-145459_CVC-FP-with-hough-no-reg",
+    "tag": "CVC-FP with hough (no reg)",
+    "description": "Evaluation of the wall detection pipeline with hough without regularization on the CVC-FP dataset",
+    "timestamp": "20260824-145459",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.8407738288614722,
+        "median": 0.8737287473591346
+      },
+      "recall": {
+        "mean": 0.9751360720409777,
+        "median": 0.9835647508523633
+      },
+      "f1": {
+        "mean": 0.8972691259622774,
+        "median": 0.9199957034585395
+      }
+    }
+  },
+  {
+    "run_id": "20260824-150012_CVC-FP-with-hough-no-reg",
+    "tag": "CVC-FP with hough (no reg)",
+    "description": "Evaluation of the wall detection pipeline with hough without regularization on the CVC-FP dataset",
+    "timestamp": "20260824-150012",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.8525712464732677,
+        "median": 0.8762821047442293
+      },
+      "recall": {
+        "mean": 0.9702245475744189,
+        "median": 0.9827557640098188
+      },
+      "f1": {
+        "mean": 0.9045677785221424,
+        "median": 0.9259925069855879
+      }
+    }
+  },
+  {
+    "run_id": "20260824-153121_CVC-FP-hough-reg-snap_corners-merge_segments-fix",
+    "tag": "CVC-FP hough+reg (snap_corners+merge_segments fix)",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); fixes snap_corners indentation bug and replaces merge_segments bbox min/max with angle-bucketed, projected-extremes merge (vs previously mislabeled 'no reg' baseline, which actually already had regularize() active).",
+    "timestamp": "20260824-153121",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.8570505754857366,
+        "median": 0.8828570103396558
+      },
+      "recall": {
+        "mean": 0.9739334196877467,
+        "median": 0.9828853562459704
+      },
+      "f1": {
+        "mean": 0.9084487200392517,
+        "median": 0.928629410211139
+      }
+    }
+  },
+  {
+    "run_id": "20260824-154002_CVC-FP-hough-reg-snap_corners-merge_segments-fix",
+    "tag": "CVC-FP hough+reg (snap_corners+merge_segments fix)",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); fixes snap_corners indentation bug and replaces merge_segments bbox min/max with angle-bucketed, projected-extremes merge (vs previously mislabeled 'no reg' baseline, which actually already had regularize() active).",
+    "timestamp": "20260824-154002",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.8570505754857366,
+        "median": 0.8828570103396558
+      },
+      "recall": {
+        "mean": 0.9739334196877467,
+        "median": 0.9828853562459704
+      },
+      "f1": {
+        "mean": 0.9084487200392517,
+        "median": 0.928629410211139
+      }
+    }
+  },
+  {
+    "run_id": "20260824-155728_CVC-FP-hough-reg-fixed-tol-1px",
+    "tag": "CVC-FP hough+reg fixed + tol = 1px ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 1px",
+    "timestamp": "20260824-155728",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.3873761681080747,
+        "median": 0.45845852699426604
+      },
+      "recall": {
+        "mean": 0.3931709271530874,
+        "median": 0.45742590042790254
+      },
+      "f1": {
+        "mean": 0.38834221473712016,
+        "median": 0.4562134278521537
+      }
+    }
+  },
+  {
+    "run_id": "20260824-155956_CVC-FP-hough-reg-fixed-tol-2px",
+    "tag": "CVC-FP hough+reg fixed + tol = 2px ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 2px",
+    "timestamp": "20260824-155956",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.5360716491837765,
+        "median": 0.6708645396247528
+      },
+      "recall": {
+        "mean": 0.5490230541779577,
+        "median": 0.6691909915955239
+      },
+      "f1": {
+        "mean": 0.5394349349165114,
+        "median": 0.664247036103311
+      }
+    }
+  },
+  {
+    "run_id": "20260824-160540_CVC-FP-hough-reg-fixed-tol-3px",
+    "tag": "CVC-FP hough+reg fixed + tol = 3px ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 3px",
+    "timestamp": "20260824-160540",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.5976851544837405,
+        "median": 0.7655064427779905
+      },
+      "recall": {
+        "mean": 0.6186988694540808,
+        "median": 0.7556780622357895
+      },
+      "f1": {
+        "mean": 0.6041756687260734,
+        "median": 0.7590353472181948
+      }
+    }
+  },
+  {
+    "run_id": "20260824-160939_CVC-FP-hough-reg-fixed-tol-4px",
+    "tag": "CVC-FP hough+reg fixed + tol = 4px ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 4px",
+    "timestamp": "20260824-160939",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6314621659525167,
+        "median": 0.8107075978564628
+      },
+      "recall": {
+        "mean": 0.6608678022610824,
+        "median": 0.8064751507492898
+      },
+      "f1": {
+        "mean": 0.6413092108281212,
+        "median": 0.8031796449654387
+      }
+    }
+  },
+  {
+    "run_id": "20260824-161206_CVC-FP-hough-reg-fixed-tol-8px",
+    "tag": "CVC-FP hough+reg fixed + tol = 8px ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 8px",
+    "timestamp": "20260824-161206",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6926669884692521,
+        "median": 0.8573054221900119
+      },
+      "recall": {
+        "mean": 0.7514958113809266,
+        "median": 0.8846358141271096
+      },
+      "f1": {
+        "mean": 0.714678506178306,
+        "median": 0.8746281447669781
+      }
+    }
+  },
+  {
+    "run_id": "20260824-161426_CVC-FP-hough-reg-fixed-tol-12px",
+    "tag": "CVC-FP hough+reg fixed + tol = 12px ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 12px",
+    "timestamp": "20260824-161426",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7377601864900757,
+        "median": 0.8704226650925435
+      },
+      "recall": {
+        "mean": 0.8153497507326337,
+        "median": 0.921795886671804
+      },
+      "f1": {
+        "mean": 0.7689645921410415,
+        "median": 0.8950217534489802
+      }
+    }
+  },
+  {
+    "run_id": "20260824-161717_CVC-FP-hough-reg-fixed-tol-0-5height",
+    "tag": "CVC-FP hough+reg fixed + tol = 0.5height ",
+    "description": "Hough pipeline with regularize() active (snap angles -> merge_segments -> snap_corners); tolerance for metrics = 0.5 * height",
+    "timestamp": "20260824-161717",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7890527248535776,
+        "median": 0.8704226650925435
+      },
+      "recall": {
+        "mean": 0.8746172312984608,
+        "median": 0.921795886671804
+      },
+      "f1": {
+        "mean": 0.8236683503091443,
+        "median": 0.8945802949006654
+      }
+    }
   }
 ]
