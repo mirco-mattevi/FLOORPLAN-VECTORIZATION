@@ -292,5 +292,68 @@
         "median": 0.8945802949006654
       }
     }
+  },
+  {
+    "run_id": "20260825-100908_hough-reg-connect_wall_network",
+    "tag": "hough+reg+connect_wall_network",
+    "description": "Same as the current scored baseline (Hough + regularize) with connect_wall_network() (bridge_wall_gaps + snap_dangling_endpoints_to_walls) added as an extra stage afterward, as an experiment -- not wired into evaluate_pair() permanently.",
+    "timestamp": "20260825-100908",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7912365135035118,
+        "median": 0.8672287076005074
+      },
+      "recall": {
+        "mean": 0.8729290666240532,
+        "median": 0.9183478119458541
+      },
+      "f1": {
+        "mean": 0.8247191783830148,
+        "median": 0.8946815150780418
+      }
+    }
+  },
+  {
+    "run_id": "20260825-101556_hough-reg-tol-1px-re-run",
+    "tag": "hough+reg tol=1px (re-run)",
+    "description": "Re-run of the hough+reg baseline (no connect_wall_network) at a fixed tolerance=1px, for direct comparison against the connect_wall_network variant at the same tolerance.",
+    "timestamp": "20260825-101556",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.3873761681080747,
+        "median": 0.45845852699426604
+      },
+      "recall": {
+        "mean": 0.3931709271530874,
+        "median": 0.45742590042790254
+      },
+      "f1": {
+        "mean": 0.38834221473712016,
+        "median": 0.4562134278521537
+      }
+    }
+  },
+  {
+    "run_id": "20260825-101817_hough-reg-connect_wall_network-tol-1px",
+    "tag": "hough+reg+connect_wall_network tol=1px",
+    "description": "Same as hough+reg+connect_wall_network but at a fixed tolerance=1px, to test whether gap-bridging matters more once the matching tolerance is tight.",
+    "timestamp": "20260825-101817",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.3579355169068949,
+        "median": 0.40694172401645845
+      },
+      "recall": {
+        "mean": 0.3663144991191585,
+        "median": 0.4094822279369103
+      },
+      "f1": {
+        "mean": 0.36058710135235195,
+        "median": 0.4104214102515652
+      }
+    }
   }
 ]
