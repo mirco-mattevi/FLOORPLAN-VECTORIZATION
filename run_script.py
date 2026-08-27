@@ -2,7 +2,7 @@
 """
 Standalone parameter-sweep runner for the floorplan-vectorization pipeline.
 
-Loads preprocess/isolate_walls_multiscale/detect_walls/regularize/compute_metrics
+Loads preprocess/isolate_walls/detect_walls/regularize/compute_metrics
 and log_performance/plot_history straight out of main.ipynb, then
 loops over PARAM_GRID below: one dataset pass per entry, each logged with the
 notebook's own log_performance()/plot_history().
@@ -18,17 +18,49 @@ matplotlib.use("Agg")  # headless: no GUI windows when running outside Jupyter
 NOTEBOOK_PATH = "main.ipynb"
 IMAGES_GT_DIR = "DATASETS/CVC-FP"
 
-# One dict per run. "tag"/"description" are passed straight to log_performance().
-# isolate_walls_multiscale (thick_dist, thin_dist)
+# Every run is a dict of overrides; "tag"/"description" are passed straight to
+# log_performance(). Omitting a key falls back to that function's own default
+# (the value evaluate_pair already scores), but BASELINE below pins every key
+# explicitly so each sweep run below is a *true* one-at-a-time change.
+# isolate_walls takes no tunable kwargs (thick_dist/thin_dist belonged to
+# isolate_walls_multiscale, dropped -- its thick/thin OR-recombination was a
+# no-op, see main.ipynb's isolate_walls_multiscale markdown cell).
 # detect_walls (threshold_frac, minlen_frac, maxgap_frac)
 # regularize (angle_tolerance, merge_distance_frac, corner_snap_frac)
-# compute_metrics (metric_tolerance)
-# Omit a key to use that function's own default, i.e. the value evaluate_pair already scores.
-PARAM_GRID = [
-    
+# compute_metrics (metric_tolerance) is intentionally left out of the sweep:
+# it only changes scoring leniency, not pipeline behavior, so it stays at its
+# auto-computed default (None) for every run.
+BASELINE = {
+    "threshold_frac": 0.01,
+    "minlen_frac": 0.01,
+    "maxgap_frac": 0.005,
+    "angle_tolerance": 10,
+    "merge_distance_frac": 0.01,
+    "corner_snap_frac": 0.007,
+}
+
+# (param, increasing values to try). Baseline's own value is skipped in each
+# sweep since it's already covered by the "baseline" run below.
+SWEEPS = [
+    ("threshold_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
+    ("minlen_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
+    ("maxgap_frac", [0.0025, 0.005, 0.01, 0.02, 0.04]),
+    ("angle_tolerance", [5, 10, 15, 20, 25]),
+    ("merge_distance_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
+    ("corner_snap_frac", [0.003, 0.007, 0.01, 0.015, 0.02]),
 ]
 
-ISOLATE_KEYS = ("thick_dist", "thin_dist")
+PARAM_GRID = [{"tag": "baseline", "description": "baseline parameters", **BASELINE}]
+for param, values in SWEEPS:
+    for value in values:
+        if value == BASELINE[param]:
+            continue
+        run = dict(BASELINE)
+        run[param] = value
+        run["tag"] = f"{param}={value}"
+        run["description"] = f"{param}={value}, all other params at baseline"
+        PARAM_GRID.append(run)
+
 DETECT_KEYS = ("threshold_frac", "minlen_frac", "maxgap_frac")
 REGULARIZE_KEYS = ("angle_tolerance", "merge_distance_frac", "corner_snap_frac")
 
@@ -60,7 +92,7 @@ def main():
     cv2 = ns["cv2"]
     glob = ns["glob"]
     preprocess = ns["preprocess"]
-    isolate_walls_multiscale = ns["isolate_walls_multiscale"]
+    isolate_walls = ns["isolate_walls"]
     detect_walls = ns["detect_walls"]
     regularize = ns["regularize"]
     compute_metrics = ns["compute_metrics"]
@@ -83,7 +115,6 @@ def main():
     for run in PARAM_GRID:
         tag = run["tag"]
         description = run.get("description", "")
-        isolate_kwargs = {k: run[k] for k in ISOLATE_KEYS if k in run}
         detect_kwargs = {k: run[k] for k in DETECT_KEYS if k in run}
         regularize_kwargs = {k: run[k] for k in REGULARIZE_KEYS if k in run}
         metric_tolerance = run.get("metric_tolerance", None)
@@ -99,7 +130,7 @@ def main():
                 continue
 
             binary_img = preprocess(img)
-            walls_mask = isolate_walls_multiscale(binary_img, **isolate_kwargs)
+            walls_mask = isolate_walls(binary_img)
             segments = detect_walls(walls_mask, **detect_kwargs)
             regularized = regularize(segments, (h, w), **regularize_kwargs)
             metrics = compute_metrics(regularized, polygons, (h, w), tolerance=metric_tolerance)
