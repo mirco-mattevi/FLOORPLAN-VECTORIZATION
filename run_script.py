@@ -24,9 +24,16 @@ IMAGES_GT_DIR = "DATASETS/CVC-FP"
 # explicitly so each sweep run below is a *true* one-at-a-time change.
 # isolate_walls takes no tunable kwargs (thick_dist/thin_dist belonged to
 # isolate_walls_multiscale, dropped -- its thick/thin OR-recombination was a
-# no-op, see main.ipynb's isolate_walls_multiscale markdown cell).
-# detect_walls (threshold_frac, minlen_frac, maxgap_frac)
-# regularize (angle_tolerance, merge_distance_frac, corner_snap_frac)
+# no-op, see main.ipynb's isolate_walls_multiscale markdown cell). evaluate_pair()
+# had drifted to calling isolate_walls_multiscale() again; it's been switched
+# back to isolate_walls() so the notebook matches this sweep and the decision
+# recorded in CLAUDE.md.
+# detect_walls (threshold_frac, minlen_frac, maxgap_frac) -- the Hough params.
+# detect_walls_lsd is not swept: it's the interchangeable LSD detector, not
+# what evaluate_pair()/this sweep scores, and it has no tunable kwargs anyway
+# (cv2.createLineSegmentDetector(0) is hardcoded).
+# regularize (angle_tolerance, merge_distance_frac, corner_snap_frac) -- values
+# below are pinned to regularize()'s own current defaults in main.ipynb.
 # compute_metrics (metric_tolerance) is intentionally left out of the sweep:
 # it only changes scoring leniency, not pipeline behavior, so it stays at its
 # auto-computed default (None) for every run.
@@ -35,7 +42,7 @@ BASELINE = {
     "minlen_frac": 0.01,
     "maxgap_frac": 0.005,
     "angle_tolerance": 10,
-    "merge_distance_frac": 0.01,
+    "merge_distance_frac": 0.015,
     "corner_snap_frac": 0.007,
 }
 
@@ -46,7 +53,7 @@ SWEEPS = [
     ("minlen_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
     ("maxgap_frac", [0.0025, 0.005, 0.01, 0.02, 0.04]),
     ("angle_tolerance", [5, 10, 15, 20, 25]),
-    ("merge_distance_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
+    ("merge_distance_frac", [0.005, 0.01, 0.015, 0.02, 0.03, 0.05]),
     ("corner_snap_frac", [0.003, 0.007, 0.01, 0.015, 0.02]),
 ]
 
