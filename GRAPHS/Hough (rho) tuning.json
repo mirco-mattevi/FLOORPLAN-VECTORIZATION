@@ -1,0 +1,107 @@
+[
+  {
+    "run_id": "20260829-155701_baseline",
+    "tag": "baseline",
+    "description": "baseline parameters",
+    "timestamp": "20260829-155701",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6744877795774593,
+        "median": 0.8199705056536756
+      },
+      "recall": {
+        "mean": 0.7156475149158685,
+        "median": 0.8396152071077437
+      },
+      "f1": {
+        "mean": 0.6910789583354203,
+        "median": 0.832796529918176
+      }
+    }
+  },
+  {
+    "run_id": "20260829-155954_rho_px-2",
+    "tag": "rho_px=2",
+    "description": "Hough tuning, rho: rho_px=2",
+    "timestamp": "20260829-155954",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6515725805813499,
+        "median": 0.7970352720250516
+      },
+      "recall": {
+        "mean": 0.6787489627345075,
+        "median": 0.7915702843103637
+      },
+      "f1": {
+        "mean": 0.6589146075095679,
+        "median": 0.7982828992740694
+      }
+    }
+  },
+  {
+    "run_id": "20260829-160252_rho_px-3",
+    "tag": "rho_px=3",
+    "description": "Hough tuning, rho: rho_px=3",
+    "timestamp": "20260829-160252",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6580350264883585,
+        "median": 0.8129410944835953
+      },
+      "recall": {
+        "mean": 0.6488253795959064,
+        "median": 0.7576844906457196
+      },
+      "f1": {
+        "mean": 0.645771350209234,
+        "median": 0.7849346914140596
+      }
+    }
+  },
+  {
+    "run_id": "20260829-160553_rho_px-4",
+    "tag": "rho_px=4",
+    "description": "Hough tuning, rho: rho_px=4",
+    "timestamp": "20260829-160553",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6546624182109011,
+        "median": 0.8112156648898684
+      },
+      "recall": {
+        "mean": 0.6107497171440309,
+        "median": 0.7115745339791972
+      },
+      "f1": {
+        "mean": 0.6233321987205284,
+        "median": 0.756128453500593
+      }
+    }
+  },
+  {
+    "run_id": "20260829-160838_rho_px-5",
+    "tag": "rho_px=5",
+    "description": "Hough tuning, rho: rho_px=5",
+    "timestamp": "20260829-160838",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6513355840651356,
+        "median": 0.8093502980917111
+      },
+      "recall": {
+        "mean": 0.5828615950560305,
+        "median": 0.6721421181887586
+      },
+      "f1": {
+        "mean": 0.6063245822014232,
+        "median": 0.7304256298080496
+      }
+    }
+  }
+]

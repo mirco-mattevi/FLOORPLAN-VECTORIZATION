@@ -1,0 +1,107 @@
+[
+  {
+    "run_id": "20260829-172147_baseline",
+    "tag": "baseline",
+    "description": "baseline parameters",
+    "timestamp": "20260829-172147",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6744877795774593,
+        "median": 0.8199705056536756
+      },
+      "recall": {
+        "mean": 0.7156475149158685,
+        "median": 0.8396152071077437
+      },
+      "f1": {
+        "mean": 0.6910789583354203,
+        "median": 0.832796529918176
+      }
+    }
+  },
+  {
+    "run_id": "20260829-172523_threshold_frac-0-005",
+    "tag": "threshold_frac=0.005",
+    "description": "Hough tuning, threshold: threshold_frac=0.005",
+    "timestamp": "20260829-172523",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6461216671119959,
+        "median": 0.7937745175053215
+      },
+      "recall": {
+        "mean": 0.7114534603465018,
+        "median": 0.8352203414144641
+      },
+      "f1": {
+        "mean": 0.6719699886679824,
+        "median": 0.819007698992738
+      }
+    }
+  },
+  {
+    "run_id": "20260829-172728_threshold_frac-0-02",
+    "tag": "threshold_frac=0.02",
+    "description": "Hough tuning, threshold: threshold_frac=0.02",
+    "timestamp": "20260829-172728",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7253438862343395,
+        "median": 0.8904306377896867
+      },
+      "recall": {
+        "mean": 0.6834472025485494,
+        "median": 0.802649466993951
+      },
+      "f1": {
+        "mean": 0.7006712507339024,
+        "median": 0.8456551101624505
+      }
+    }
+  },
+  {
+    "run_id": "20260829-172935_threshold_frac-0-03",
+    "tag": "threshold_frac=0.03",
+    "description": "Hough tuning, threshold: threshold_frac=0.03",
+    "timestamp": "20260829-172935",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7474789100154686,
+        "median": 0.916324724348699
+      },
+      "recall": {
+        "mean": 0.6108386384554603,
+        "median": 0.7093575331937505
+      },
+      "f1": {
+        "mean": 0.6692589341431879,
+        "median": 0.801932163897723
+      }
+    }
+  },
+  {
+    "run_id": "20260829-173143_threshold_frac-0-05",
+    "tag": "threshold_frac=0.05",
+    "description": "Hough tuning, threshold: threshold_frac=0.05",
+    "timestamp": "20260829-173143",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7542841797928367,
+        "median": 0.9390260249969237
+      },
+      "recall": {
+        "mean": 0.5572334655836598,
+        "median": 0.6551463911187965
+      },
+      "f1": {
+        "mean": 0.6384777183582211,
+        "median": 0.767552598858265
+      }
+    }
+  }
+]

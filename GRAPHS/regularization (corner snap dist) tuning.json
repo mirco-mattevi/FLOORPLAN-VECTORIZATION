@@ -1,0 +1,107 @@
+[
+  {
+    "run_id": "20260829-181356_baseline",
+    "tag": "baseline",
+    "description": "baseline parameters",
+    "timestamp": "20260829-181356",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6738115401523178,
+        "median": 0.8161225396051138
+      },
+      "recall": {
+        "mean": 0.7157146482756931,
+        "median": 0.8396152071077437
+      },
+      "f1": {
+        "mean": 0.6906341751130399,
+        "median": 0.833471990142644
+      }
+    }
+  },
+  {
+    "run_id": "20260829-181618_corner_snap_frac-0-003",
+    "tag": "corner_snap_frac=0.003",
+    "description": "regularization, corner snap: corner_snap_frac=0.003",
+    "timestamp": "20260829-181618",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.681698036870713,
+        "median": 0.8335040220778823
+      },
+      "recall": {
+        "mean": 0.7197707141584817,
+        "median": 0.8450155959974345
+      },
+      "f1": {
+        "mean": 0.6970036629386027,
+        "median": 0.8425456878159886
+      }
+    }
+  },
+  {
+    "run_id": "20260829-181836_corner_snap_frac-0-01",
+    "tag": "corner_snap_frac=0.01",
+    "description": "regularization, corner snap: corner_snap_frac=0.01",
+    "timestamp": "20260829-181836",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6742197082676176,
+        "median": 0.8320556588161069
+      },
+      "recall": {
+        "mean": 0.7199009424451153,
+        "median": 0.8424379177795024
+      },
+      "f1": {
+        "mean": 0.6915887050945242,
+        "median": 0.8352216571976548
+      }
+    }
+  },
+  {
+    "run_id": "20260829-182049_corner_snap_frac-0-015",
+    "tag": "corner_snap_frac=0.015",
+    "description": "regularization, corner snap: corner_snap_frac=0.015",
+    "timestamp": "20260829-182049",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.676141967646843,
+        "median": 0.8403437541246694
+      },
+      "recall": {
+        "mean": 0.7191719199882197,
+        "median": 0.8406389765745803
+      },
+      "f1": {
+        "mean": 0.6898478345575607,
+        "median": 0.8416559767960257
+      }
+    }
+  },
+  {
+    "run_id": "20260829-182304_corner_snap_frac-0-02",
+    "tag": "corner_snap_frac=0.02",
+    "description": "regularization, corner snap: corner_snap_frac=0.02",
+    "timestamp": "20260829-182304",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6365202126100351,
+        "median": 0.778097329450935
+      },
+      "recall": {
+        "mean": 0.7086272243108657,
+        "median": 0.8122549527913361
+      },
+      "f1": {
+        "mean": 0.6573611952349415,
+        "median": 0.8095079543733211
+      }
+    }
+  }
+]

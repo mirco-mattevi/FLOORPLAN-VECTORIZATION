@@ -1,0 +1,107 @@
+[
+  {
+    "run_id": "20260829-163628_baseline",
+    "tag": "baseline",
+    "description": "baseline parameters",
+    "timestamp": "20260829-163628",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6744877795774593,
+        "median": 0.8199705056536756
+      },
+      "recall": {
+        "mean": 0.7156475149158685,
+        "median": 0.8396152071077437
+      },
+      "f1": {
+        "mean": 0.6910789583354203,
+        "median": 0.832796529918176
+      }
+    }
+  },
+  {
+    "run_id": "20260829-163857_maxgap_frac-0-0025",
+    "tag": "maxgap_frac=0.0025",
+    "description": "Hough tuning, max gap: maxgap_frac=0.0025",
+    "timestamp": "20260829-163857",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7077388474422378,
+        "median": 0.863603455572822
+      },
+      "recall": {
+        "mean": 0.712899274608897,
+        "median": 0.8302292791385755
+      },
+      "f1": {
+        "mean": 0.7072164293142201,
+        "median": 0.8506806812720111
+      }
+    }
+  },
+  {
+    "run_id": "20260829-164141_maxgap_frac-0-01",
+    "tag": "maxgap_frac=0.01",
+    "description": "Hough tuning, max gap: maxgap_frac=0.01",
+    "timestamp": "20260829-164141",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.61180078002451,
+        "median": 0.7188620711802984
+      },
+      "recall": {
+        "mean": 0.7343330311843757,
+        "median": 0.8512952347022905
+      },
+      "f1": {
+        "mean": 0.6627241901914568,
+        "median": 0.7793091359665678
+      }
+    }
+  },
+  {
+    "run_id": "20260829-164423_maxgap_frac-0-02",
+    "tag": "maxgap_frac=0.02",
+    "description": "Hough tuning, max gap: maxgap_frac=0.02",
+    "timestamp": "20260829-164423",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.5786372958666031,
+        "median": 0.6439579084091773
+      },
+      "recall": {
+        "mean": 0.7447664255464518,
+        "median": 0.8516341421183383
+      },
+      "f1": {
+        "mean": 0.6448540291302521,
+        "median": 0.73595402962305
+      }
+    }
+  },
+  {
+    "run_id": "20260829-164657_maxgap_frac-0-04",
+    "tag": "maxgap_frac=0.04",
+    "description": "Hough tuning, max gap: maxgap_frac=0.04",
+    "timestamp": "20260829-164657",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.5502239881851024,
+        "median": 0.5948103911555822
+      },
+      "recall": {
+        "mean": 0.7458073215349382,
+        "median": 0.8525552626771686
+      },
+      "f1": {
+        "mean": 0.6245764576709809,
+        "median": 0.7133058451568766
+      }
+    }
+  }
+]
