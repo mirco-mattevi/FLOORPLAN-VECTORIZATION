@@ -22,28 +22,20 @@ IMAGES_GT_DIR = "DATASETS/CVC-FP"
 # log_performance(). Omitting a key falls back to that function's own default
 # (the value evaluate_pair already scores), but BASELINE below pins every key
 # explicitly so each sweep run below is a *true* one-at-a-time change.
-# isolate_walls takes no tunable kwargs (thick_dist/thin_dist belonged to
-# isolate_walls_multiscale, dropped -- its thick/thin OR-recombination was a
-# no-op, see main.ipynb's isolate_walls_multiscale markdown cell). evaluate_pair()
-# had drifted to calling isolate_walls_multiscale() again; it's been switched
-# back to isolate_walls() so the notebook matches this sweep and the decision
-# recorded in CLAUDE.md.
-# detect_walls (threshold_frac, minlen_frac, maxgap_frac) -- the Hough params.
-# detect_walls_lsd is not swept: it's the interchangeable LSD detector, not
-# what evaluate_pair()/this sweep scores, and it has no tunable kwargs anyway
-# (cv2.createLineSegmentDetector(0) is hardcoded).
-# regularize (angle_tolerance, merge_distance_frac, corner_snap_frac) -- values
-# below are pinned to regularize()'s own current defaults in main.ipynb.
-# compute_metrics (metric_tolerance) is intentionally left out of the sweep:
-# it only changes scoring leniency, not pipeline behavior, so it stays at its
-# auto-computed default (None) for every run.
+
+# isolate_walls takes no tunable kwargs
+# detect_walls (threshold_frac, minlen_frac, maxgap_frac, rho_px, theta_deg) -- the Hough params.
+# regularize (angle_tolerance, merge_distance_frac, corner_snap_frac)
 BASELINE = {
     "threshold_frac": 0.01,
     "minlen_frac": 0.01,
     "maxgap_frac": 0.005,
+    "rho_px": 1,
+    "theta_deg": 1,
     "angle_tolerance": 10,
     "merge_distance_frac": 0.015,
     "corner_snap_frac": 0.007,
+    "tolerance_frac": 0.005,
 }
 
 # (param, increasing values to try). Baseline's own value is skipped in each
@@ -52,9 +44,12 @@ SWEEPS = [
     ("threshold_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
     ("minlen_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
     ("maxgap_frac", [0.0025, 0.005, 0.01, 0.02, 0.04]),
+    ("rho_px", [1, 2, 3, 5]),
+    ("theta_deg", [0.5, 1, 2, 3]),
     ("angle_tolerance", [5, 10, 15, 20, 25]),
     ("merge_distance_frac", [0.005, 0.01, 0.015, 0.02, 0.03, 0.05]),
     ("corner_snap_frac", [0.003, 0.007, 0.01, 0.015, 0.02]),
+    ("tolerance_frac", [0.0025, 0.005, 0.0075, 0.01, 0.02]),
 ]
 
 PARAM_GRID = [{"tag": "baseline", "description": "baseline parameters", **BASELINE}]
@@ -68,7 +63,7 @@ for param, values in SWEEPS:
         run["description"] = f"{param}={value}, all other params at baseline"
         PARAM_GRID.append(run)
 
-DETECT_KEYS = ("threshold_frac", "minlen_frac", "maxgap_frac")
+DETECT_KEYS = ("threshold_frac", "minlen_frac", "maxgap_frac", "rho_px", "theta_deg")
 REGULARIZE_KEYS = ("angle_tolerance", "merge_distance_frac", "corner_snap_frac")
 
 
@@ -124,7 +119,7 @@ def main():
         description = run.get("description", "")
         detect_kwargs = {k: run[k] for k in DETECT_KEYS if k in run}
         regularize_kwargs = {k: run[k] for k in REGULARIZE_KEYS if k in run}
-        metric_tolerance = run.get("metric_tolerance", None)
+        tolerance_frac = run.get("tolerance_frac", None)
 
         print(f"\n=== {tag} ===", flush=True)
         results = []
@@ -140,7 +135,10 @@ def main():
             walls_mask = isolate_walls(binary_img)
             segments = detect_walls(walls_mask, **detect_kwargs)
             regularized = regularize(segments, (h, w), **regularize_kwargs)
-            metrics = compute_metrics(regularized, polygons, (h, w), tolerance=metric_tolerance)
+            # let compute_metrics own the fraction-to-pixel conversion (falls back to
+            # its own default tolerance_frac when this run doesn't override it)
+            metric_kwargs = {} if tolerance_frac is None else {"tolerance_frac": tolerance_frac}
+            metrics = compute_metrics(regularized, polygons, (h, w), **metric_kwargs)
             results.append(metrics)
 
         log_performance(results, tag=tag, description=description)
