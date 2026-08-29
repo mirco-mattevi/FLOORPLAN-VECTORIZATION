@@ -35,21 +35,21 @@ BASELINE = {
     "angle_tolerance": 10,
     "merge_distance_frac": 0.015,
     "corner_snap_frac": 0.007,
-    "tolerance_frac": 0.005,
+    "tolerance_frac": 0.0025,
 }
 
 # (param, increasing values to try). Baseline's own value is skipped in each
 # sweep since it's already covered by the "baseline" run below.
 SWEEPS = [
     ("threshold_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
-    ("minlen_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
-    ("maxgap_frac", [0.0025, 0.005, 0.01, 0.02, 0.04]),
-    ("rho_px", [1, 2, 3, 5]),
-    ("theta_deg", [0.5, 1, 2, 3]),
-    ("angle_tolerance", [5, 10, 15, 20, 25]),
-    ("merge_distance_frac", [0.005, 0.01, 0.015, 0.02, 0.03, 0.05]),
-    ("corner_snap_frac", [0.003, 0.007, 0.01, 0.015, 0.02]),
-    ("tolerance_frac", [0.0025, 0.005, 0.0075, 0.01, 0.02]),
+    #("minlen_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
+    #("maxgap_frac", [0.0025, 0.005, 0.01, 0.02, 0.04]),
+    #("rho_px", [1, 2, 3, 4, 5]),
+    #("theta_deg", [0.5, 1, 2, 3, 4, 5]),
+    #("angle_tolerance", [5, 10, 15, 20, 25]),
+    #("merge_distance_frac", [0.005, 0.01, 0.015, 0.02, 0.03, 0.05]),
+    #("corner_snap_frac", [0.003, 0.007, 0.01, 0.015, 0.02]),
+    #("tolerance_frac", [0.0025, 0.005, 0.0075, 0.01, 0.02]),
 ]
 
 PARAM_GRID = [{"tag": "baseline", "description": "baseline parameters", **BASELINE}]
@@ -60,7 +60,7 @@ for param, values in SWEEPS:
         run = dict(BASELINE)
         run[param] = value
         run["tag"] = f"{param}={value}"
-        run["description"] = f"{param}={value}, all other params at baseline"
+        run["description"] = f"Hough tuning, threshold: {param}={value}"
         PARAM_GRID.append(run)
 
 DETECT_KEYS = ("threshold_frac", "minlen_frac", "maxgap_frac", "rho_px", "theta_deg")
