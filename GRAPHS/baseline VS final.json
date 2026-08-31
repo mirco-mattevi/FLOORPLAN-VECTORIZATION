@@ -1,0 +1,44 @@
+[
+  {
+    "run_id": "20260830-111521_baseline",
+    "tag": "baseline",
+    "description": "baseline parameters",
+    "timestamp": "20260830-111521",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6738115401523178,
+        "median": 0.8161225396051138
+      },
+      "recall": {
+        "mean": 0.7157146482756931,
+        "median": 0.8396152071077437
+      },
+      "f1": {
+        "mean": 0.6906341751130399,
+        "median": 0.833471990142644
+      }
+    }
+  },
+  {
+    "run_id": "20260830-111721_final",
+    "tag": "final",
+    "description": "final decision parameters",
+    "timestamp": "20260830-111721",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.7475884847661246,
+        "median": 0.9426310885726832
+      },
+      "recall": {
+        "mean": 0.6938794482463728,
+        "median": 0.8247770460176651
+      },
+      "f1": {
+        "mean": 0.7164115843979139,
+        "median": 0.8788420008143043
+      }
+    }
+  }
+]

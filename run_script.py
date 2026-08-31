@@ -5,7 +5,10 @@ Standalone parameter-sweep runner for the floorplan-vectorization pipeline.
 Loads preprocess/isolate_walls/detect_walls/regularize/compute_metrics
 and log_performance/plot_history straight out of main.ipynb, then
 loops over PARAM_GRID below: one dataset pass per entry, each logged with the
-notebook's own log_performance()/plot_history().
+notebook's own log_performance()/plot_history(). PARAM_GRID currently holds
+two runs -- BASELINE and FINAL (the empirical optimum from the
+per-parameter sweeps already recorded in GRAPHS/) -- for a final head-to-head
+comparison rather than another sweep.
 
 """
 
@@ -21,7 +24,7 @@ IMAGES_GT_DIR = "DATASETS/CVC-FP"
 # Every run is a dict of overrides; "tag"/"description" are passed straight to
 # log_performance(). Omitting a key falls back to that function's own default
 # (the value evaluate_pair already scores), but BASELINE below pins every key
-# explicitly so each sweep run below is a *true* one-at-a-time change.
+# explicitly so FINAL's changes are unambiguous one-at-a-time deltas.
 
 # isolate_walls takes no tunable kwargs
 # detect_walls (threshold_frac, minlen_frac, maxgap_frac, rho_px, theta_deg) -- the Hough params.
@@ -38,30 +41,26 @@ BASELINE = {
     "tolerance_frac": 0.0025,
 }
 
-# (param, increasing values to try). Baseline's own value is skipped in each
-# sweep since it's already covered by the "baseline" run below.
-SWEEPS = [
-    #("threshold_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
-    #("minlen_frac", [0.005, 0.01, 0.02, 0.03, 0.05]),
-    #("maxgap_frac", [0.0025, 0.005, 0.01, 0.02, 0.04]),
-    #("rho_px", [1, 2, 3, 4, 5]),
-    #("theta_deg", [0.5, 1, 2, 3, 4, 5]),
-    #("angle_tolerance", [5, 10, 15, 20, 25]),
-    #("merge_distance_frac", [0.005, 0.01, 0.015, 0.02, 0.03, 0.05]),
-    #("corner_snap_frac", [0.003, 0.007, 0.01, 0.015, 0.02]),
-    #("tolerance_frac", [0.0025, 0.005, 0.0075, 0.01, 0.02]),
-]
+# Empirical optimum found by the per-parameter sweeps recorded in GRAPHS/
+# (see the "Hyperparameter sensitivity" section in main.ipynb): one-at-a-time
+# changes from BASELINE, kept only where a sweep showed a real (non-noise)
+# gain. rho_px, minlen_frac, angle_tolerance are left at baseline since the
+# sweeps found them already optimal / inert over the tested range.
+# tolerance_frac is also left at baseline: it's the evaluation matching
+# tolerance, not a pipeline parameter, so raising it inflates F1 without
+# improving the actual geometry.
+FINAL = dict(BASELINE)
+FINAL.update({
+    "threshold_frac": 0.02,
+    "maxgap_frac": 0.0025,
+    "merge_distance_frac": 0.01,
+    "corner_snap_frac": 0.003,
+})
 
-PARAM_GRID = [{"tag": "baseline", "description": "baseline parameters", **BASELINE}]
-for param, values in SWEEPS:
-    for value in values:
-        if value == BASELINE[param]:
-            continue
-        run = dict(BASELINE)
-        run[param] = value
-        run["tag"] = f"{param}={value}"
-        run["description"] = f"regularization, corner snap: {param}={value}"
-        PARAM_GRID.append(run)
+PARAM_GRID = [
+    {"tag": "baseline", "description": "baseline parameters", **BASELINE},
+    {"tag": "final", "description": "final decision parameters", **FINAL},
+]
 
 DETECT_KEYS = ("threshold_frac", "minlen_frac", "maxgap_frac", "rho_px", "theta_deg")
 REGULARIZE_KEYS = ("angle_tolerance", "merge_distance_frac", "corner_snap_frac")

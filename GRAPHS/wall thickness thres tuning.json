@@ -1,0 +1,86 @@
+[
+  {
+    "run_id": "20260830-093522_walls-tresh-1",
+    "tag": "walls tresh = 1",
+    "description": "isolate walls thickness threshold = 1px",
+    "timestamp": "20260830-093522",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.48431576985838337,
+        "median": 0.5575160529841965
+      },
+      "recall": {
+        "mean": 0.7507339846008453,
+        "median": 0.8181072784408041
+      },
+      "f1": {
+        "mean": 0.5782312781894461,
+        "median": 0.6645252913715192
+      }
+    }
+  },
+  {
+    "run_id": "20260830-093848_walls-tresh-2",
+    "tag": "walls tresh = 2",
+    "description": "isolate walls thickness threshold = 2px",
+    "timestamp": "20260830-093848",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6744877795774593,
+        "median": 0.8199705056536756
+      },
+      "recall": {
+        "mean": 0.7156475149158685,
+        "median": 0.8396152071077437
+      },
+      "f1": {
+        "mean": 0.6910789583354203,
+        "median": 0.832796529918176
+      }
+    }
+  },
+  {
+    "run_id": "20260830-094147_walls-tresh-2",
+    "tag": "walls tresh = 2",
+    "description": "isolate walls thickness threshold = 2px",
+    "timestamp": "20260830-094147",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6881426854800188,
+        "median": 0.8588823652316462
+      },
+      "recall": {
+        "mean": 0.646121906764994,
+        "median": 0.8284996933196715
+      },
+      "f1": {
+        "mean": 0.6614439466603469,
+        "median": 0.8426684227890162
+      }
+    }
+  },
+  {
+    "run_id": "20260830-095803_walls-tresh-4",
+    "tag": "walls tresh = 4",
+    "description": "isolate walls thickness threshold = 4px",
+    "timestamp": "20260830-095803",
+    "n_images": 122,
+    "aggregate": {
+      "precision": {
+        "mean": 0.6746892886135123,
+        "median": 0.8487950767740176
+      },
+      "recall": {
+        "mean": 0.4118114021295481,
+        "median": 0.4999181086418667
+      },
+      "f1": {
+        "mean": 0.5013021841472679,
+        "median": 0.6290399576228055
+      }
+    }
+  }
+]

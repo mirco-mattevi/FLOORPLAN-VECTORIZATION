@@ -16,9 +16,6 @@ tmp
 DATASETS/
 SMALL/
 
-# Claude
-CLAUDE.md
-
 # Images
 *.png
 *.jpg
